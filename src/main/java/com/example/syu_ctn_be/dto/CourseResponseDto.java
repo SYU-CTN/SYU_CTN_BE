@@ -19,4 +19,6 @@ public class CourseResponseDto {
     private String category;
     private String syllabusUrl;
     private Long recommendation;
+    //현재 사용자가 편집 권한이 있는지 판단을 위함.
+    private boolean canEdit;
 }

@@ -20,6 +20,8 @@ public class CourseController {
         Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 과목 정보를 찾을 수 없습니다. ID: " + courseId));
 
+        boolean canEdit = checkUserAdminAuthority();
+
         CourseResponseDto response = CourseResponseDto.builder()
                 .id(course.getId())
                 .courseCode(course.getCourseCode())
@@ -33,5 +35,10 @@ public class CourseController {
                 .build();
 
         return ResponseEntity.ok(response);
+    }
+    // 임시 권한 체크 메서드
+    private boolean checkUserAdminAuthority() {
+        // 실제로는 SecurityContextHolder에서 유저의 Role을 꺼내와야 합니다.
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.syu_ctn_be.domain;
 
+import com.example.syu_ctn_be.dto.CourseRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,4 +32,13 @@ public class Course {
     private String syllabusUrl; // 강의계획서 링크
 
     private Long recommendation; // 후수강 추천 과목 ID
+
+    public void update(CourseRequestDto requestDto) {
+        if (requestDto.getTitle() != null) this.title = requestDto.getTitle();
+        if (requestDto.getDescription() != null) this.description = requestDto.getDescription();
+        if (requestDto.getCredits() != null) this.credits = requestDto.getCredits();
+        if (requestDto.getGradeLevel() != null) this.gradeLevel = requestDto.getGradeLevel();
+        if (requestDto.getCategory() != null) this.category = requestDto.getCategory();
+        if (requestDto.getSyllabusUrl() != null) this.syllabusUrl = requestDto.getSyllabusUrl();
+    }
 }

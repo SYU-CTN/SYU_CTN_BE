@@ -27,6 +27,7 @@ public class Course {
     @Column(name = "professor_name", length = 50)
     private String professorName;
 
+    @Column(nullable = false)
     private Integer credits;
 
     @Column(name = "grade_level", nullable = false)

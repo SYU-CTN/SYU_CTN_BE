@@ -9,3 +9,5 @@ CREATE TABLE courses (
                          syllabus_url VARCHAR(255),
                          recommendation BIGINT
 );
+
+ALTER TABLE users ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'STUDENT';

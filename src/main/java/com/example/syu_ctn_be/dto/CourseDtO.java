@@ -7,7 +7,7 @@ import lombok.*;
 /**
  * 과목 관련 데이터 전송 객체
  */
-public class CourseDTO {
+public class CourseDtO {
 
     /** 과목 등록/수정 요청 */
     @Getter

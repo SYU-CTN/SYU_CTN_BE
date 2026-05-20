@@ -1,6 +1,6 @@
-package com.example.syu_ctn_be.chat.repository;
+package com.example.syu_ctn_be.repository;
 
-import com.example.syu_ctn_be.chat.entity.ChatSession;
+import com.example.syu_ctn_be.entity.ChatSession;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

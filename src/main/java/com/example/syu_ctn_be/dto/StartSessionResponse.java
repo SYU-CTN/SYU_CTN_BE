@@ -1,11 +1,10 @@
-package com.example.syu_ctn_be.chat.dto;
+package com.example.syu_ctn_be.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class AskResponse {
+public class StartSessionResponse {
     private final Long sessionId;
-    private final String answer;
 }

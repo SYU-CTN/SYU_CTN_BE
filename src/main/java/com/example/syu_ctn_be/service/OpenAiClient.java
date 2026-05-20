@@ -1,9 +1,9 @@
-package com.example.syu_ctn_be.chat.service;
+package com.example.syu_ctn_be.service;
 
-import com.example.syu_ctn_be.chat.config.OpenAiProperties;
-import com.example.syu_ctn_be.chat.dto.openai.OpenAiChatRequest;
-import com.example.syu_ctn_be.chat.dto.openai.OpenAiChatResponse;
-import com.example.syu_ctn_be.chat.dto.openai.OpenAiMessage;
+import com.example.syu_ctn_be.config.OpenAiProperties;
+import com.example.syu_ctn_be.dto.openai.OpenAiChatRequest;
+import com.example.syu_ctn_be.dto.openai.OpenAiChatResponse;
+import com.example.syu_ctn_be.dto.openai.OpenAiMessage;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,4 +1,4 @@
-package com.example.syu_ctn_be.chat.config;
+package com.example.syu_ctn_be.config;
 
 import java.time.Duration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

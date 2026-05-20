@@ -3,6 +3,9 @@ package com.example.syu_ctn_be.chat.entity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.example.syu_ctn_be.domain.User;
+import com.example.syu_ctn_be.entity.ChatHistory;
+import com.example.syu_ctn_be.entity.ChatSession;
+import com.example.syu_ctn_be.entity.MessageRole;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

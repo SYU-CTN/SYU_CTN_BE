@@ -1,4 +1,4 @@
-package com.example.syu_ctn_be.chat.dto.openai;
+package com.example.syu_ctn_be.dto.openai;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

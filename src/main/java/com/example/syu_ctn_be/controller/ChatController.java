@@ -1,9 +1,9 @@
-package com.example.syu_ctn_be.chat.controller;
+package com.example.syu_ctn_be.controller;
 
-import com.example.syu_ctn_be.chat.dto.AskRequest;
-import com.example.syu_ctn_be.chat.dto.AskResponse;
-import com.example.syu_ctn_be.chat.dto.StartSessionResponse;
-import com.example.syu_ctn_be.chat.service.ChatService;
+import com.example.syu_ctn_be.dto.AskRequest;
+import com.example.syu_ctn_be.dto.AskResponse;
+import com.example.syu_ctn_be.dto.StartSessionResponse;
+import com.example.syu_ctn_be.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

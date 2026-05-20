@@ -1,4 +1,4 @@
-package com.example.syu_ctn_be.chat.repository;
+package com.example.syu_ctn_be.repository;
 
 /**
  * RAG 의 Retrieval 단계.

@@ -1,4 +1,4 @@
-package com.example.syu_ctn_be.chat.entity;
+package com.example.syu_ctn_be.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.example.syu_ctn_be.chat.dto;
+package com.example.syu_ctn_be.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

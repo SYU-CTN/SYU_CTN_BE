@@ -1,4 +1,4 @@
-package com.example;
+package com.example.TreeNavigator;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.SpringApplication;

@@ -33,6 +33,8 @@ public class Course {
     @Column(name = "grade_level", nullable = false)
     private Integer gradeLevel;
 
+    private Integer semester;
+
     @Column(length = 30)
     private String category;
 

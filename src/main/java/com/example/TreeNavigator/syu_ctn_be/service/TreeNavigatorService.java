@@ -29,7 +29,10 @@ public class TreeNavigatorService {
                         course.getId(),
                         course.getCourseCode(),
                         course.getTitle(),
+                        course.getCredits(),
+                        course.getCategory(),
                         course.getGradeLevel(),
+                        course.getSemester(),
                         course.getPosX(),
                         course.getPosY()
                 ))

@@ -56,3 +56,8 @@ Thumbs.db
 # ============================================================
 !gradle/wrapper/gradle-wrapper.jar
 !HELP.md
+
+### Local secrets ###
+src/main/resources/application-secret.yml
+src/main/resources/application-local.yml
+src/main/resources/application-*.local.yml

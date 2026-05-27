@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * OpenAI Chat Completions 메시지 단위. role 은 system/user/assistant.
- */
 @Getter
 @Setter
 @NoArgsConstructor

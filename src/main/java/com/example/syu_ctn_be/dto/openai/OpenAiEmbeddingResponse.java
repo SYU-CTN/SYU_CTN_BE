@@ -10,15 +10,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OpenAiChatResponse {
+public class OpenAiEmbeddingResponse {
 
-    private List<Choice> choices;
+    private List<EmbeddingData> data;
 
     @Getter
     @Setter
     @NoArgsConstructor
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Choice {
-        private OpenAiMessage message;
+    public static class EmbeddingData {
+        private List<Double> embedding;
     }
 }

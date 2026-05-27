@@ -17,10 +17,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 대화방 내부의 단일 메시지 이력. HISTORY 테이블 매핑.
- * 발신자는 USER 또는 ASSISTANT 둘 중 하나로 구분한다.
- */
 @Entity
 @Getter
 @Table(name = "HISTORY")
@@ -57,7 +53,6 @@ public class ChatHistory {
         return ChatHistory.builder().role(role).content(content).build();
     }
 
-    /** 양방향 연관관계 편의 메서드(ChatSession.addHistory 에서만 호출). */
     void linkTo(ChatSession session) {
         this.session = session;
     }

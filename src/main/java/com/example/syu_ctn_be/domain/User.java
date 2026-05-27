@@ -11,10 +11,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 서비스 사용자(USERS 테이블) 엔티티.
- * 외부에서 사용자를 식별할 때는 LOGIN_ID 를 기준으로 한다.
- */
 @Entity
 @Getter
 @Table(name = "USERS")
@@ -26,7 +22,6 @@ public class User {
     @Column(name = "USER_ID")
     private Long id;
 
-    /** 로그인/세션 식별에 사용되는 외부 식별자. */
     @Column(name = "LOGIN_ID", nullable = false, unique = true, length = 100)
     private String loginId;
 

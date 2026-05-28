@@ -11,6 +11,10 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     Optional<Course> findByCode(String code);
 
+    default Optional<Course> findByCourseCode(String courseCode) {
+        return findByCode(courseCode);
+    }
+
     boolean existsByCode(String code);
 
     List<Course> findByGrade(Integer grade);

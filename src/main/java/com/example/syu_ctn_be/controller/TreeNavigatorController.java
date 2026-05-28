@@ -1,7 +1,7 @@
-package com.example.TreeNavigator.syu_ctn_be.controller;
+package com.example.syu_ctn_be.controller;
 
-import com.example.TreeNavigator.syu_ctn_be.dto.TreeNavigatorResponse;
-import com.example.TreeNavigator.syu_ctn_be.service.TreeNavigatorService;
+import com.example.syu_ctn_be.dto.TreeNavigatorResponse;
+import com.example.syu_ctn_be.service.TreeNavigatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

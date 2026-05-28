@@ -1,12 +1,21 @@
 package com.example.syu_ctn_be.domain;
 
-
-import jakarta.persistence.*;
-import lombok.*;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "courses")
@@ -21,23 +30,66 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(name = "course_code", unique = true, nullable = false, length = 20)
-    private String code;                  // 예: CS101
+    private String code;
 
     @Column(nullable = false, length = 100)
-    private String title;                 // 예: AI를 위한 미적분학
+    private String title;
+
+    @Column(name = "professor_name", length = 50)
+    private String professorName;
 
     @Column(nullable = false)
-    private Integer credits;              // 학점
+    private Integer credits;
 
     @Column(name = "grade_level", nullable = false)
-    private Integer grade;                // 학년 (1~4)
+    private Integer grade;
 
     @Column(nullable = false)
-    private Integer semester;             // 학기 (1, 2)
+    private Integer semester;
 
     @Column(nullable = false, length = 30)
-    private String category;              // 공통 / SW전공 / 컴공전공
+    private String category;
 
+    @Column(name = "track_name", length = 100)
+    private String trackName;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(name = "syllabus_url", length = 500)
+    private String syllabusUrl;
+
+    private Integer recommendation;
+
+    @Column(name = "pos_x")
+    private Float posX;
+
+    @Column(name = "pos_y")
+    private Float posY;
+
+    @ManyToMany
+    @JoinTable(
+            name = "prerequisites",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "pre_id")
+    )
+    @Builder.Default
+    private List<Course> prerequisiteCourses = new ArrayList<>();
+
+    public String getCourseCode() {
+        return code;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.code = courseCode;
+    }
+
+    public Integer getGradeLevel() {
+        return grade;
+    }
+
+    public void setGradeLevel(Integer gradeLevel) {
+        this.grade = gradeLevel;
+    }
 }

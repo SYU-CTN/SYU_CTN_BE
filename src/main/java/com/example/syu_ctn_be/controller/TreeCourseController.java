@@ -1,9 +1,10 @@
-package com.example.TreeNavigator.syu_ctn_be.controller;
+package com.example.syu_ctn_be.controller;
 
-import com.example.TreeNavigator.syu_ctn_be.domain.Course;
-import com.example.TreeNavigator.syu_ctn_be.dto.CourseDTO;
-import com.example.TreeNavigator.syu_ctn_be.dto.CourseRequest;
-import com.example.TreeNavigator.syu_ctn_be.repository.CourseRepository;
+import com.example.syu_ctn_be.domain.Course;
+import com.example.syu_ctn_be.dto.TreeCourseDto;
+import com.example.syu_ctn_be.dto.TreeCourseRequest;
+import com.example.syu_ctn_be.repository.CourseRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,79 +18,79 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/V1/courses")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:5173")
-public class CourseController {
+public class TreeCourseController {
 
     private final CourseRepository courseRepository;
 
     @GetMapping
-    public List<CourseDTO> getCourses() {
+    public List<TreeCourseDto> getCourses() {
         return courseRepository.findAll().stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
+                .map(TreeCourseDto::from)
+                .toList();
     }
 
     @PostMapping
-    public CourseDTO createCourse(@RequestBody CourseRequest request) {
+    public TreeCourseDto createCourse(@RequestBody TreeCourseRequest request) {
         validateCreateRequest(request);
 
         Course course = Course.builder()
-                .courseCode(request.getCourseCode())
+                .code(request.getCourseCode())
                 .title(request.getTitle())
                 .credits(request.getCredits())
                 .category(request.getCategory())
-                .gradeLevel(request.getGradeLevel())
+                .grade(request.getGradeLevel())
                 .semester(request.getSemester())
                 .build();
 
-        return toDto(courseRepository.save(course));
+        return TreeCourseDto.from(courseRepository.save(course));
     }
 
     @PatchMapping("/{id}")
-    public CourseDTO patchCourse(@PathVariable Long id, @RequestBody CourseRequest request) {
+    public TreeCourseDto patchCourse(@PathVariable Long id, @RequestBody TreeCourseRequest request) {
         return updateCourse(id, request);
     }
 
     @PutMapping("/{id}")
-    public CourseDTO putCourse(@PathVariable Long id, @RequestBody CourseRequest request) {
+    public TreeCourseDto putCourse(@PathVariable Long id, @RequestBody TreeCourseRequest request) {
         return updateCourse(id, request);
     }
 
-    private CourseDTO updateCourse(Long id, CourseRequest request) {
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
+
+    private TreeCourseDto updateCourse(Long id, TreeCourseRequest request) {
         return courseRepository.findById(id)
                 .map(course -> {
-                    if (request.getTitle() != null) course.setTitle(request.getTitle());
-                    if (request.getCourseCode() != null) course.setCourseCode(request.getCourseCode());
-                    if (request.getCredits() != null) course.setCredits(request.getCredits());
-                    if (request.getCategory() != null) course.setCategory(request.getCategory());
-                    if (request.getGradeLevel() != null) course.setGradeLevel(request.getGradeLevel());
-                    if (request.getSemester() != null) course.setSemester(request.getSemester());
-                    return toDto(courseRepository.save(course));
+                    if (request.getTitle() != null) {
+                        course.setTitle(request.getTitle());
+                    }
+                    if (request.getCourseCode() != null) {
+                        course.setCourseCode(request.getCourseCode());
+                    }
+                    if (request.getCredits() != null) {
+                        course.setCredits(request.getCredits());
+                    }
+                    if (request.getCategory() != null) {
+                        course.setCategory(request.getCategory());
+                    }
+                    if (request.getGradeLevel() != null) {
+                        course.setGradeLevel(request.getGradeLevel());
+                    }
+                    if (request.getSemester() != null) {
+                        course.setSemester(request.getSemester());
+                    }
+                    return TreeCourseDto.from(courseRepository.save(course));
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Course not found. id=" + id));
     }
 
-    private CourseDTO toDto(Course course) {
-        return new CourseDTO(
-                course.getId(),
-                course.getCourseCode(),
-                course.getTitle(),
-                course.getCredits(),
-                course.getCategory(),
-                course.getGradeLevel(),
-                course.getSemester(),
-                course.getPosX(),
-                course.getPosY()
-        );
-    }
-
-    private void validateCreateRequest(CourseRequest request) {
+    private void validateCreateRequest(TreeCourseRequest request) {
         if (request.getCourseCode() == null || request.getCourseCode().isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "courseCode or code is required.");
         }
@@ -102,10 +103,5 @@ public class CourseController {
         if (request.getGradeLevel() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "gradeLevel or grade is required.");
         }
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "test";
     }
 }

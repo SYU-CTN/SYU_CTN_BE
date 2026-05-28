@@ -1,4 +1,4 @@
-package com.example.TreeNavigator.syu_ctn_be.dto;
+package com.example.syu_ctn_be.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CourseRequest {
+public class TreeCourseRequest {
 
     @JsonAlias("code")
     private String courseCode;

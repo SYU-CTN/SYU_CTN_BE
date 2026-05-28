@@ -19,27 +19,27 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Table(name = "HISTORY")
+@Table(name = "history")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "SESSION_ID", nullable = false)
+    @JoinColumn(name = "session_id", nullable = false)
     private ChatSession session;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "ROLE", nullable = false, length = 20)
+    @Column(name = "role", nullable = false, length = 20)
     private MessageRole role;
 
-    @Column(name = "CONTENT", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "CREATED_AT", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Builder

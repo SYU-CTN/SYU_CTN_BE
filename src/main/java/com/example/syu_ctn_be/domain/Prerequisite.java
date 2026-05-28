@@ -1,11 +1,24 @@
 package com.example.syu_ctn_be.domain;
-import jakarta.persistence.*;
-import lombok.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(
         name = "prerequisites",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"pre_course_id", "post_course_id"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"pre_id", "post_id"})
 )
 @Getter
 @Setter
@@ -17,13 +30,11 @@ public class Prerequisite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** 선수 과목 (먼저 들어야 하는 과목) */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pre_course_id", nullable = false)
+    @JoinColumn(name = "pre_id", nullable = false)
     private Course preCourse;
 
-    /** 후속 과목 (선수 이후에 들을 수 있는 과목) */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_course_id", nullable = false)
+    @JoinColumn(name = "post_id", nullable = false)
     private Course postCourse;
 }

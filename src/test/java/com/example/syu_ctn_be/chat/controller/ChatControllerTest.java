@@ -11,9 +11,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.syu_ctn_be.controller.ChatController;
-import com.example.syu_ctn_be.controller.GlobalExceptionHandler;
+import com.example.syu_ctn_be.exception.GlobalExceptionHandler;
 import com.example.syu_ctn_be.service.ChatService;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,12 +22,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -45,19 +38,8 @@ class ChatControllerTest {
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
-                .setCustomArgumentResolvers(new AuthenticationPrincipalArgumentResolver())
                 .setControllerAdvice(new GlobalExceptionHandler())
                 .build();
-
-        UserDetails principal = User.withUsername(LOGIN_ID).password("x").roles("USER").build();
-        Authentication auth = new UsernamePasswordAuthenticationToken(
-                principal, "x", principal.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(auth);
-    }
-
-    @AfterEach
-    void clearSecurityContext() {
-        SecurityContextHolder.clearContext();
     }
 
     @Nested
@@ -67,7 +49,8 @@ class ChatControllerTest {
         void returnsNewSessionId() throws Exception {
             when(chatService.startSession(LOGIN_ID)).thenReturn(42L);
 
-            mockMvc.perform(post("/api/v1/chat/sessions/start"))
+            mockMvc.perform(post("/api/v1/chat/sessions/start")
+                            .param("loginId", LOGIN_ID))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.sessionId").value(42));
 
@@ -75,9 +58,7 @@ class ChatControllerTest {
         }
 
         @Test
-        void returns401WithoutPrincipal() throws Exception {
-            SecurityContextHolder.clearContext();
-
+        void returns401WithoutLoginId() throws Exception {
             mockMvc.perform(post("/api/v1/chat/sessions/start"))
                     .andExpect(status().is(HttpStatus.UNAUTHORIZED.value()))
                     .andExpect(jsonPath("$.status").value(401));
@@ -94,6 +75,7 @@ class ChatControllerTest {
             when(chatService.ask(LOGIN_ID, 7L, "question")).thenReturn("answer");
 
             mockMvc.perform(post("/api/v1/chat/sessions/ask")
+                            .param("loginId", LOGIN_ID)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content("{\"sessionId\":7,\"question\":\"question\"}"))
                     .andExpect(status().isOk())
@@ -109,16 +91,15 @@ class ChatControllerTest {
 
         @Test
         void returns204AfterDiscard() throws Exception {
-            mockMvc.perform(delete("/api/v1/chat/sessions/{id}", 99L))
+            mockMvc.perform(delete("/api/v1/chat/sessions/{id}", 99L)
+                            .param("loginId", LOGIN_ID))
                     .andExpect(status().isNoContent());
 
             verify(chatService, times(1)).discardSession(LOGIN_ID, 99L);
         }
 
         @Test
-        void returns401WithoutPrincipal() throws Exception {
-            SecurityContextHolder.clearContext();
-
+        void returns401WithoutLoginId() throws Exception {
             mockMvc.perform(delete("/api/v1/chat/sessions/{id}", 99L))
                     .andExpect(status().is(HttpStatus.UNAUTHORIZED.value()))
                     .andExpect(jsonPath("$.status").value(401));

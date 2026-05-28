@@ -1,6 +1,5 @@
 package com.example.syu_ctn_be.entity;
 
-import com.example.syu_ctn_be.domain.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,23 +21,23 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Table(name = "SESSIONS")
+@Table(name = "sessions")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "LOGIN_ID", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "login_id", nullable = false)
     private User user;
 
-    @Column(name = "TITLE", length = 255)
+    @Column(name = "title", length = 255)
     private String title;
 
-    @Column(name = "CREATED_AT", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, orphanRemoval = true)

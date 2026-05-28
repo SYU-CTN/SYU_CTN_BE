@@ -10,9 +10,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.example.syu_ctn_be.config.OpenAiProperties;
-import com.example.syu_ctn_be.domain.User;
 import com.example.syu_ctn_be.entity.ChatSession;
 import com.example.syu_ctn_be.entity.MessageRole;
+import com.example.syu_ctn_be.entity.User;
 import com.example.syu_ctn_be.repository.ChatSessionRepository;
 import com.example.syu_ctn_be.repository.DocumentRepository;
 import com.example.syu_ctn_be.repository.UserRepository;
@@ -48,8 +48,12 @@ class ChatServiceTest {
 
     @BeforeEach
     void setUp() {
-        user = User.builder().loginId(LOGIN_ID).build();
+        user = newUser(LOGIN_ID);
         ReflectionTestUtils.setField(user, "id", 1L);
+    }
+
+    private User newUser(String loginId) {
+        return User.registerUser(loginId, "password", loginId, loginId + "@example.com", "dept", 1, "010", "STUDENT");
     }
 
     @Nested
@@ -134,7 +138,7 @@ class ChatServiceTest {
 
         @Test
         void rejectsSessionOwnedByAnotherUser() {
-            User other = User.builder().loginId("bob").build();
+            User other = newUser("bob");
             ChatSession bobSession = ChatSession.openFor(other);
             when(sessionRepository.findById(SESSION_ID)).thenReturn(Optional.of(bobSession));
 
@@ -178,7 +182,7 @@ class ChatServiceTest {
 
         @Test
         void rejectsSessionOwnedByAnotherUser() {
-            User other = User.builder().loginId("bob").build();
+            User other = newUser("bob");
             ChatSession bobSession = ChatSession.openFor(other);
             when(sessionRepository.findById(SESSION_ID)).thenReturn(Optional.of(bobSession));
 

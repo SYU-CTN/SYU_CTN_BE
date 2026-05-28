@@ -1,7 +1,7 @@
-package com.example.TreeNavigator.syu_ctn_be.config;
+package com.example.syu_ctn_be.config;
 
-import com.example.TreeNavigator.syu_ctn_be.domain.Course;
-import com.example.TreeNavigator.syu_ctn_be.repository.CourseRepository;
+import com.example.syu_ctn_be.domain.Course;
+import com.example.syu_ctn_be.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -141,10 +141,10 @@ public class InitialCourseDataSeeder implements CommandLineRunner {
     private void add(Map<String, Course> courses, String code, String title, int gradeLevel, String category, float posX, float posY, int credits) {
         int semester = posY % 180 == 0 ? 1 : 2;
         Course course = Course.builder()
-                .courseCode(code)
+                .code(code)
                 .title(title)
                 .credits(credits)
-                .gradeLevel(gradeLevel)
+                .grade(gradeLevel)
                 .semester(semester)
                 .category(category)
                 .trackName(category)

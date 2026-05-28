@@ -15,18 +15,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "login_id", unique = true, nullable = false)
     private String loginId;
 
+    @Column(name = "password")
     private String password;
+    @Column(name = "name")
     private String name;
+    @Column(name = "email")
     private String email;
+    @Column(name = "department")
     private String department;
+    @Column(name = "grade")
     private Integer grade;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "user_type")
     private String userType;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
     // 🌟 1. Role Enum을 다른 파일에서도 쓸 수 있도록 클래스 안으로 넣고 public을 붙였습니다!

@@ -1,11 +1,11 @@
 package com.example.syu_ctn_be.service;
 
 import com.example.syu_ctn_be.config.OpenAiProperties;
-import com.example.syu_ctn_be.domain.User;
 import com.example.syu_ctn_be.dto.openai.OpenAiMessage;
 import com.example.syu_ctn_be.entity.ChatHistory;
 import com.example.syu_ctn_be.entity.ChatSession;
 import com.example.syu_ctn_be.entity.MessageRole;
+import com.example.syu_ctn_be.entity.User;
 import com.example.syu_ctn_be.repository.ChatSessionRepository;
 import com.example.syu_ctn_be.repository.DocumentRepository;
 import com.example.syu_ctn_be.repository.UserRepository;

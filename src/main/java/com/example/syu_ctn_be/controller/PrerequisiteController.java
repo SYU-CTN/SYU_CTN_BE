@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("V1/api/prerequisites")
+@RequestMapping("/api/v1/prerequisites")
 @RequiredArgsConstructor
 public class PrerequisiteController {
 

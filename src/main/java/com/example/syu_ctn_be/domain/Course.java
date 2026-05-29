@@ -16,6 +16,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "courses")
@@ -74,6 +76,7 @@ public class Course {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "pre_id")
     )
+    @OnDelete(action = OnDeleteAction.CASCADE) // 이 설정을 추가하여 하이버네이트의 이중 삭제 방지
     @Builder.Default
     private List<Course> prerequisiteCourses = new ArrayList<>();
 

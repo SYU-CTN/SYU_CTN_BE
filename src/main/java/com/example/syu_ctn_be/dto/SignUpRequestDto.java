@@ -10,7 +10,7 @@ public class SignUpRequestDto {
     private String loginId;
     private String password;
     private String name;
-    private UserType userType;
+    private String userType;
     private String department;
     private Integer grade;
     private String email;

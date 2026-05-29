@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/V1/tree")
+@RequestMapping("/api/v1/tree")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:5173")
 public class TreeNavigatorController {

@@ -30,7 +30,7 @@ public class AuthService {
                 request.getDepartment(),
                 request.getGrade(),
                 request.getPhone(),
-                request.getUserType().name()
+                request.getUserType()
         );
         userRepository.save(newUser);
     }

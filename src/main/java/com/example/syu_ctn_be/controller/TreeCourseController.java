@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/V1/courses")
+@RequestMapping("/api/v1/tree/courses")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:5173")
 public class TreeCourseController {

@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // 추가할 코드: 회원가입 시 아이디 중복 여부 확인
     boolean existsByLoginId(String loginId);
+
+    void deleteByLoginId(String loginId);
 }

@@ -12,4 +12,6 @@ public interface CompletedCourseRepository extends JpaRepository<CompletedCourse
     Optional<CompletedCourse> findByLoginIdAndCourse_Id(String loginId, Long courseId);
 
     boolean existsByLoginIdAndCourse_Id(String loginId, Long courseId);
+
+    void deleteByLoginId(String loginId);
 }

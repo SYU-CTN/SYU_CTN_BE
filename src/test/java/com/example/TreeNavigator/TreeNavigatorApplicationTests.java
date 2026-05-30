@@ -1,13 +1,13 @@
-package com.example.syu_ctn_be;
+package com.example.TreeNavigator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SyuCtnBeApplicationTests {
+class TreeNavigatorApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
